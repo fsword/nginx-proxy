@@ -18,6 +18,12 @@ The containers being proxied must [expose](https://docs.docker.com/reference/run
 
 Provided your DNS is setup to forward foo.bar.com to the a host running nginx-proxy, the request will be routed to a container with the VIRTUAL_HOST env var set.
 
+### Customize default service port
+
+You can use the environment DEFAULT\_PORT to cutomize the port which nginx server listen for http, like this:
+
+docker run -d --expose 8090 -p 8090:8090 -e DEFAULT_PORT=8090 -v /var/run/docker.sock:/tmp/docker.sock:ro fsword/nginx-proxy
+
 ### Multiple Ports
 
 If your container exposes multiple ports, nginx-proxy will default to the service running on port 80.  If you need to specify a different port, you can set a VIRTUAL_PORT env var to select a different one.  If your container only exposes one port and it has a VIRTUAL_HOST env var set, that port will be selected.
