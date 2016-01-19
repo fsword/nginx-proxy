@@ -16,8 +16,8 @@ fi
 
 # replace default port
 if [[ $DEFAULT_PORT != "" ]]; then
-  sed -i "s/listen 80/listen $DEFAULT_PORT/g" /etc/nginx/nginx.conf
-  sed -i "s/listen 80/listen $DEFAULT_PORT/g" /app/nginx.tmpl
+  sed -i "s/listen 80;/listen $DEFAULT_PORT;/g" /app/nginx.tmpl
+  sed -i "s/listen 80 {/listen $DEFAULT_PORT {/g" /app/nginx.tmpl
 fi
 
 # If the user has run the default command and the socket doesn't exist, fail
